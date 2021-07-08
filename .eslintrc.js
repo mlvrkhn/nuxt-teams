@@ -13,6 +13,7 @@ module.exports = {
     rules: {
         semi: "off",
         quotes: ["error", "double"],
-        indent: ["warn", 4]
+        indent: ["warn", 4],
+        "vue/html-indent": 0
     }
 };
