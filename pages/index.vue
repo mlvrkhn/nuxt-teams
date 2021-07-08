@@ -1,8 +1,9 @@
-<template class="xxx">
-    <div class="container">
+<template>
+    <div class="container nuxt-container">
         <div class="container">
             <h1>Index</h1>
         </div>
+        <NuxtLink to="task/create">Create Task</NuxtLink>
     </div>
 </template>
 
@@ -10,10 +11,7 @@
 export default {};
 </script>
 <style>
-.xxx {
-    background-color: red;
-}
-.container {
+.nuxt-container {
     background-color: rgb(109, 148, 148);
 }
 </style>

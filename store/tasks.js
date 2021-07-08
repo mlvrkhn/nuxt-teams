@@ -1,0 +1,58 @@
+import TaskService from "../services/TaskService";
+
+export const state = () => ({
+    tasks: [],
+    task: {}
+});
+
+export const mutations = {
+    SET_TASKS(state, tasks) {
+        state.tasks = tasks;
+    },
+    SET_TASK(state, task) {
+        state.task = task;
+    },
+    CREATE_TASK(state, task) {
+        state.tasks.push(task);
+    },
+    TOGGLE_TASK_STATUS(state, taskID) {
+        state.tasks = state.tasks.map(t =>
+            t.id === taskID ? { ...t, isCompleted: !t.isCompleted } : t
+        );
+    }
+};
+export const actions = {
+    fetchTasks({ commit }) {
+        return TaskService.getTasks().then(res => {
+            commit("SET_TASKS", res.data);
+        });
+    },
+    fetchTask({ commit }, id) {
+        return TaskService.getTask(id).then(res => {
+            commit("SET_TASK", res.data);
+        });
+    },
+    createTask({ commit }, task) {
+        commit("CREATE_TASK", task);
+    },
+    toggleTaskStatus({ commit, dispatch }, task) {
+        commit("TOGGLE_TASK_STATUS", task.id);
+        dispatch("fetchTask", task.id);
+        TaskService.updateTaskStatus(task);
+    }
+};
+export const getters = {
+    getTaskByID: state => id => {
+        return state.tasks.find(task => task.id === id);
+    },
+    getTotalTaskCount: state => state.tasks.length,
+    completedTaskCount: state => {
+        return state.tasks.filter(task => task.isCompleted).length || 0;
+    },
+    notCompletedTaskCount: state => {
+        return state.tasks.filter(task => !task.isCompleted).length || 0;
+    },
+    getTasksFulfilmentRate: (state, getters) => {
+        return (getters.completedTaskCount / getters.getTotalTaskCount) * 100;
+    }
+};

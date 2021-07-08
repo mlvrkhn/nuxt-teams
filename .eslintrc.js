@@ -14,6 +14,10 @@ module.exports = {
         semi: "off",
         quotes: ["error", "double"],
         indent: ["warn", 4],
-        "vue/html-indent": 0
+        "vue/html-indent": 0,
+        "vue/singleline-html-element-content-newline": "off",
+        "space-before-function-paren": 0,
+        "arrow-parens": 0,
+        "vue/html-self-closign": 0
     }
 };
