@@ -1,39 +1,46 @@
 <template>
-    <div class="">
-        <div class="">
-            <div class="">
-                <img src="@/assets/images/face.svg" class="" />
-                <h2 class="name">Martin Gawlyta</h2>
+    <div class="column user-panel-container">
+        <div class="user-container">
+            <div class="user-personal-data">
+                <img
+                    src="@/assets/images/face.svg"
+                    class="user-personal-avatar"
+                />
+                <h2 class="user-personal-name">Martin Gawlyta</h2>
                 <p>mrtn.dev@aol.com</p>
             </div>
-            <div class="">
-                <div class="">
+            <div class="user-notifications">
+                <div class="icon-container">
                     <span>⚙️</span>
                     <span>✉️</span>
                     <span>🔔</span>
                 </div>
-                <div class="">
-                    <!-- <div class="">
+                <div class="tasks-summary-container">
+                    <div class="summary-progress">
                         <div
-                            class=""
+                            class="progress-value"
                             :style="{
-                                '--progress-value': taskCompetionRate + '%'
+                                '--progress-value': taskCompetionRate() + '%'
                             }"
                         >
-                            {{ taskCompetionRate }} %
+                            {{ taskCompetionRate() }} %
                         </div>
-                    </div> -->
-                    <div class="">
+                    </div>
+                    <div class="summary-numeric">
                         <span>
-                            <h3>{{ completedTaskCount() }}</h3>
+                            <h3 class="summary-numeric-digit">
+                                {{ completedTaskCount() }}
+                            </h3>
                             <p>Completed</p>
                         </span>
                         <span>
-                            <h3>{{ notCompletedTaskCount() }}</h3>
+                            <h3 class="summary-numeric-digit">
+                                {{ notCompletedTaskCount() }}
+                            </h3>
                             <p>To Do</p>
                         </span>
                         <span>
-                            <h3>6</h3>
+                            <h3 class="summary-numeric-digit">6</h3>
                             <p>Archived</p>
                         </span>
                     </div>
@@ -64,15 +71,11 @@ export default {
     computed: {
         ...mapState("central", ["projects", "activeFilter", "searchQuery"]),
         ...mapState("task", ["tasks", "task"])
-        // ...mapState({
-        //     projects: state => state.central.projects,
-        //     activeFilter: state => state.central.activeFilter,
-        //     searchQuery: state => state.central.searchQuery
-        // })
     },
     methods: {
-        // taskCompetionRate() {
-        // }
+        taskCompetionRate() {
+            return (this.completedTaskCount() / this.tasks.length) * 100;
+        },
         completedTaskCount() {
             return this.tasks.filter(task => task.isCompleted).length || 0;
         },
@@ -89,4 +92,113 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import "../assets/scss/variables.scss";
+
+.tasks-summary-container {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+    margin: 2rem 5px;
+}
+.summary-numeric {
+    display: flex;
+    justify-content: space-evenly;
+    &-digit {
+        font-size: larger;
+        font-weight: 600;
+    }
+    & span {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+.user {
+    &-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    &-panel-container {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: space-between;
+    }
+    &-personal {
+        &-name {
+            font-weight: 700;
+        }
+        &-data {
+            display: flex;
+            flex-direction: column;
+        }
+        &-data > * {
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        &-avatar {
+            height: 100px;
+        }
+    }
+    &-notifications {
+        display: flex;
+        flex-direction: column;
+        & .icon-container {
+            display: flex;
+            justify-content: center;
+        }
+    }
+}
+.projects-container > h2 {
+    margin-bottom: 10px;
+}
+.project-item {
+    text-align: left;
+    display: block;
+    margin-bottom: 0.5rem;
+    padding-left: 5px;
+    cursor: pointer;
+    &:hover {
+        background-color: $blue;
+    }
+}
+.active {
+    background-color: $btn;
+}
+
+.progress {
+    justify-content: flex-start;
+    border-radius: 100px;
+    align-items: center;
+    position: relative;
+    padding: 0 3px;
+    display: flex;
+    height: 20px;
+    width: 100%;
+    &-value {
+        animation: load 2s normal forwards;
+        box-shadow: 0 10px 40px -10px;
+        border-radius: 100px;
+        background: $btn-darker;
+        height: 20px;
+        padding: 1px 0;
+        margin-bottom: 2rem;
+        text-align: center;
+        width: 0;
+    }
+}
+@keyframes load {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: var(--progress-value);
+    }
+}
+</style>

@@ -68,7 +68,7 @@
       "description": "The term boilerplate refers to standardized text, copy, documents, methods, or procedures that may be used over again without making major changes to the original. ... In the field of contract law, documents contain boilerplate language, which is a language that is considered generic or standard in contracts.",
       "category": "Development",
       "date": "12-03-2020",
-      "isCompleted": false,
+      "isCompleted": true,
       "attendees": [
         {
           "id": 5,
@@ -90,7 +90,7 @@
       "description": "In Information Technology, a boilerplate is a unit of writing that can be reused over and over without change. By extension, the idea is sometimes applied to reusable programming, as in “boilerplate code.",
       "category": "Social",
       "date": "11-11-2019",
-      "isCompleted": false,
+      "isCompleted": true,
       "attendees": [
         {
           "id": 7,
