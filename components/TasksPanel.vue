@@ -42,8 +42,7 @@ export default {
     computed: {
         ...mapState({
             tasks: state => state.tasks.tasks,
-            activeFilter: "all",
-            // activeFilter: state => state.activeFilter,
+            activeFilter: state => state.activeFilter,
             searchQuery: state => state.searchQuery
         }),
         filteredTasks() {

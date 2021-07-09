@@ -12,24 +12,24 @@
                     <span>✉️</span>
                     <span>🔔</span>
                 </div>
-                <!-- <div class="">
-                    <div class="">
+                <div class="">
+                    <!-- <div class="">
                         <div
                             class=""
                             :style="{
-                                '--progress-value': getTasksFulfilmentRate + '%'
+                                '--progress-value': taskCompetionRate + '%'
                             }"
                         >
-                            {{ getTasksFulfilmentRate }} %
+                            {{ taskCompetionRate }} %
                         </div>
-                    </div>
+                    </div> -->
                     <div class="">
                         <span>
-                            <h3>{{ completedTaskCount }}</h3>
+                            <h3>{{ completedTaskCount() }}</h3>
                             <p>Completed</p>
                         </span>
                         <span>
-                            <h3>{{ notCompletedTaskCount }}</h3>
+                            <h3>{{ notCompletedTaskCount() }}</h3>
                             <p>To Do</p>
                         </span>
                         <span>
@@ -37,12 +37,12 @@
                             <p>Archived</p>
                         </span>
                     </div>
-                </div> -->
+                </div>
             </div>
         </div>
         <div class="projects-container">
             <h2>PROJECTS</h2>
-            <!-- <a
+            <a
                 v-for="p in projects"
                 :key="p"
                 class="project-item"
@@ -51,17 +51,40 @@
                 @click="filterCategory"
             >
                 👉 {{ p }}
-            </a> -->
+            </a>
         </div>
         <div class="team-container">TEAM</div>
     </div>
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
+    computed: {
+        ...mapState("central", ["projects", "activeFilter", "searchQuery"]),
+        ...mapState("task", ["tasks", "task"])
+        // ...mapState({
+        //     projects: state => state.central.projects,
+        //     activeFilter: state => state.central.activeFilter,
+        //     searchQuery: state => state.central.searchQuery
+        // })
+    },
     methods: {
-        // calcTaskFullfilmentRate() {
+        // taskCompetionRate() {
         // }
+        completedTaskCount() {
+            return this.tasks.filter(task => task.isCompleted).length || 0;
+        },
+        notCompletedTaskCount() {
+            return this.tasks.filter(task => !task.isCompleted).length || 0;
+        },
+        filterCategory($event) {
+            const selectedCategory = $event.target.getAttribute(
+                "data-category"
+            );
+            this.setCategoryFilter(selectedCategory);
+        }
     }
 };
 </script>

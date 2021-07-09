@@ -9,16 +9,27 @@ body {
 }
 
 .container {
-    // border: 1px solid $btn;
     &--main {
         width: 100%;
         border: 1px solid $btn;
-        gap: 0.5rem;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        gap: 5px;
+        // display: flex;
+        // flex-direction: row;
+        // justify-content: center;
+        height: 90vh;
+        overflow: hidden;
+        display: grid;
+        grid-template-columns: 25% 30% 45%;
+        border-collapse: collapse;
+    }
+    &--column {
+        width: 100%;
+        border: 1px solid rgb(5, 139, 0);
     }
     &--nuxt {
         border: 3px solid rgb(5, 139, 0);
+    }
+    .middle {
+        background-color: $bg-darker;
     }
 }

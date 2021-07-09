@@ -1,8 +1,14 @@
 <template>
     <div class="container container--main">
-        <user-panel />
-        <tasks-panel class="" />
-        <Nuxt />
+        <div class="container container--column left">
+            <user-panel />
+        </div>
+        <div class="container container--column middle">
+            <tasks-panel class="" />
+        </div>
+        <div class="container container--column right">
+            <Nuxt />
+        </div>
     </div>
 </template>
 
