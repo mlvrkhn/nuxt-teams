@@ -1,9 +1,7 @@
 <template>
-    <div class="container container-main">
-        <user-panel></user-panel>
-        <div class="column">
-            <tasks-panel class="darker"></tasks-panel>
-        </div>
+    <div class="container container--main">
+        <user-panel />
+        <tasks-panel class="" />
         <Nuxt />
     </div>
 </template>
@@ -12,8 +10,4 @@
 export default {};
 </script>
 
-<style lang="scss">
-.container-main {
-    border: 2px solid green;
-}
-</style>
+<style lang="scss"></style>

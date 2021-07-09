@@ -1,5 +1,5 @@
 <template>
-    <div class="container nuxt-container">
+    <div class="container container--nuxt">
         <div class="container">
             <h1>Index</h1>
         </div>
@@ -10,8 +10,4 @@
 <script>
 export default {};
 </script>
-<style>
-.nuxt-container {
-    background-color: rgb(109, 148, 148);
-}
-</style>
+<style></style>

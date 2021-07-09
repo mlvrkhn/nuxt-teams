@@ -2,7 +2,7 @@
     <div class="">
         <div class="">
             <div class="">
-                <img src="@/assets/face.svg" class="" />
+                <img src="@/assets/images/face.svg" class="" />
                 <h2 class="name">Martin Gawlyta</h2>
                 <p>mrtn.dev@aol.com</p>
             </div>
@@ -12,7 +12,7 @@
                     <span>✉️</span>
                     <span>🔔</span>
                 </div>
-                <div class="">
+                <!-- <div class="">
                     <div class="">
                         <div
                             class=""
@@ -37,12 +37,12 @@
                             <p>Archived</p>
                         </span>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         <div class="projects-container">
             <h2>PROJECTS</h2>
-            <a
+            <!-- <a
                 v-for="p in projects"
                 :key="p"
                 class="project-item"
@@ -51,14 +51,19 @@
                 @click="filterCategory"
             >
                 👉 {{ p }}
-            </a>
+            </a> -->
         </div>
         <div class="team-container">TEAM</div>
     </div>
 </template>
 
 <script>
-export default {};
+export default {
+    methods: {
+        // calcTaskFullfilmentRate() {
+        // }
+    }
+};
 </script>
 
 <style lang="scss" scoped></style>

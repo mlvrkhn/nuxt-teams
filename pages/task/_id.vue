@@ -1,6 +1,9 @@
 <template>
     <div>
-        {{ $route.params.id }}
+        <h1>ID PAGE</h1>
+        <p>
+            {{ $route.params.id }}
+        </p>
     </div>
 </template>
 

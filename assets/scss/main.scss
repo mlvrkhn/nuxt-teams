@@ -1,6 +1,24 @@
+@import "variables";
+html,
 body {
-    background-color: rgba(197, 153, 153, 0.5);
+    height: 100%;
+    & body {
+        margin: 1rem;
+        background-color: $bg;
+    }
 }
+
 .container {
-    border: 1px solid hotpink;
+    // border: 1px solid $btn;
+    &--main {
+        width: 100%;
+        border: 1px solid $btn;
+        gap: 0.5rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    &--nuxt {
+        border: 3px solid rgb(5, 139, 0);
+    }
 }
