@@ -1,13 +1,17 @@
 <template>
     <div class="container container--nuxt">
-        <div class="container">
-            <h1>Index</h1>
+        <div class="container--info">
+            <p>Select your task for details or create a new one</p>
         </div>
-        <NuxtLink to="task/create">Create Task</NuxtLink>
     </div>
 </template>
 
 <script>
 export default {};
 </script>
-<style></style>
+<style>
+.container--info {
+    align-content: center;
+    justify-self: center;
+}
+</style>

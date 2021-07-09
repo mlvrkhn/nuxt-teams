@@ -19,6 +19,7 @@ module.exports = {
         "space-before-function-paren": 0,
         "arrow-parens": 0,
         "no-console": 0,
-        "vue/html-self-closing": 0
+        "vue/html-self-closing": 0,
+        "vue/max-attributes-per-line": 1
     }
 };

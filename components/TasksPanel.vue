@@ -1,36 +1,32 @@
 <template>
-    <div class="">
-        <ul class="">
-            <h1>Tasks Panel</h1>
-            <!-- <li
+    <div class="container container--task-list">
+        <ul class="task--list">
+            <li
                 v-for="(task, index) in searchResults"
                 :key="index"
                 :task="task"
+                class="task--list_item"
             >
-                <div class="">
-                    <label for="">
-                        <input
-                            id="toggle-button"
-                            type=""
-                            class=""
-                            :checked="task.isCompleted"
-                            @click="toggleTaskStatus(task)"
-                        />
-                    </label>
-                    <router-link
-                        :to="{ name: 'tasks', params: { id: task.id } }"
-                        class="link"
-                    >
-                        <div class="">
-                            <h3>{{ task.title }}</h3>
-                            <p class="">
-                                {{ task.description }}
-                            </p>
-                            <p class="">{{ task.date }}</p>
-                        </div>
-                    </router-link>
-                </div>
-            </li> -->
+                <label for="toggle-button">
+                    <input
+                        id="toggle-button"
+                        type="checkbox"
+                        class="list_item--checkbox"
+                        :checked="task.isCompleted"
+                        @click="toggleTaskStatus(task)"
+                    />
+                </label>
+                <NuxtLink
+                    :to="{ name: 'task-id', params: { id: task.id } }"
+                    class="task--wrapper"
+                >
+                    <h3 class="task--title">{{ task.title }}</h3>
+                    <p class="task--description cut-text">
+                        {{ task.description }}
+                    </p>
+                    <p class="task--date">{{ task.date }}</p>
+                </NuxtLink>
+            </li>
         </ul>
         <submit-button />
     </div>
@@ -41,9 +37,9 @@ import { mapState } from "vuex";
 export default {
     computed: {
         ...mapState({
-            tasks: state => state.tasks.tasks,
-            activeFilter: state => state.activeFilter,
-            searchQuery: state => state.searchQuery
+            tasks: state => state.task.tasks,
+            activeFilter: state => state.central.activeFilter,
+            searchQuery: state => state.central.searchQuery
         }),
         filteredTasks() {
             if (this.activeFilter === "All") {
@@ -75,11 +71,60 @@ export default {
             });
         }
     },
+    created() {
+        this.getTasks();
+    },
     methods: {
         toggleTaskStatus(task) {
-            this.$store.dispatch("tasks/toggleTaskStatus", task);
+            this.$store.dispatch("task/toggleTaskStatus", task);
+        },
+        getTasks() {
+            this.$store.dispatch("task/fetchTasks");
         }
     }
 };
 </script>
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import "../assets/scss/variables.scss";
+.task--list {
+    width: 100%;
+    &_item {
+        padding: 10px 10px;
+        border-bottom: 1px solid grey;
+        display: flex;
+        flex-direction: row;
+        &:hover {
+            background-color: $yellow;
+        }
+        /* display: flex; */
+        /* flex-direction: row; */
+    }
+}
+.task {
+    &--wrapper {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    &--title {
+        font-size: large;
+    }
+    &--description {
+        font-size: smaller;
+        width: 95%;
+    }
+    &--date {
+        font-size: small;
+    }
+    .active {
+        color: red;
+    }
+}
+.cut-text {
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+    height: 1.2em;
+    white-space: nowrap;
+}
+</style>

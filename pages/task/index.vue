@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>You are on /task page</h2>
+        <h2>You are on /task</h2>
     </div>
 </template>
 
