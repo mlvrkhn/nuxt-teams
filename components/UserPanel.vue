@@ -20,7 +20,7 @@
                         <div
                             class="progress-value"
                             :style="{
-                                '--progress-value': taskCompetionRate() + '%'
+                                '--progress-bar': taskCompetionRate() + '%'
                             }"
                         >
                             {{ taskCompetionRate() }} %
@@ -97,10 +97,14 @@ export default {
 
 .tasks-summary-container {
     display: flex;
+    width: 100%;
     flex-direction: column;
     justify-items: center;
     align-items: center;
     margin: 2rem 5px;
+}
+.summary-progress {
+    width: 100%;
 }
 .summary-numeric {
     display: flex;
@@ -165,7 +169,7 @@ export default {
     padding-left: 5px;
     cursor: pointer;
     &:hover {
-        background-color: $blue;
+        background-color: $yellow;
     }
 }
 .active {
@@ -198,7 +202,7 @@ export default {
         width: 0;
     }
     100% {
-        width: var(--progress-value);
+        width: var(--progress-bar);
     }
 }
 </style>
