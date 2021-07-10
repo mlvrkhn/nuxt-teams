@@ -86,7 +86,7 @@ export default {
             const selectedCategory = $event.target.getAttribute(
                 "data-category"
             );
-            this.setCategoryFilter(selectedCategory);
+            this.$store.dispatch("central/setCategoryFilter", selectedCategory);
         }
     }
 };
