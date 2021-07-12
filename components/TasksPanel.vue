@@ -1,33 +1,43 @@
 <template>
-    <div class="container container--task-list">
-        <ul class="task--list">
-            <li
-                v-for="(task, index) in searchResults"
-                :key="index"
-                :task="task"
-                class="task--list_item"
-            >
-                <label for="toggle-button">
-                    <input
-                        id="toggle-button"
-                        type="checkbox"
-                        class="list_item--checkbox"
-                        :checked="task.isCompleted"
-                        @click="toggleTaskStatus(task)"
-                    />
-                </label>
-                <NuxtLink
-                    :to="{ name: 'task-id', params: { id: task.id } }"
-                    class="task--wrapper"
+    <div class="wrapper">
+        <div class="container container--task-list">
+            <div class="container container--searchbar">
+                <input
+                    class="panel-searchbar"
+                    type="text"
+                    placeholder="Search"
+                    @click="toggleTaskStatus(task)"
+                />
+            </div>
+            <ul class="task--list">
+                <li
+                    v-for="(task, index) in searchResults"
+                    :key="index"
+                    :task="task"
+                    class="task--list_item"
                 >
-                    <h3 class="task--title">{{ task.title }}</h3>
-                    <p class="task--description cut-text">
-                        {{ task.description }}
-                    </p>
-                    <p class="task--date">{{ task.date }}</p>
-                </NuxtLink>
-            </li>
-        </ul>
+                    <label for="toggle-button">
+                        <input
+                            id="toggle-button"
+                            type="checkbox"
+                            class="list_item--checkbox"
+                            :checked="task.isCompleted"
+                            @click="toggleTaskStatus(task)"
+                        />
+                    </label>
+                    <NuxtLink
+                        :to="{ name: 'task-id', params: { id: task.id } }"
+                        class="task--wrapper"
+                    >
+                        <h3 class="task--title">{{ task.title }}</h3>
+                        <p class="task--description cut-text">
+                            {{ task.description }}
+                        </p>
+                        <p class="task--date">{{ task.date }}</p>
+                    </NuxtLink>
+                </li>
+            </ul>
+        </div>
         <submit-button />
     </div>
 </template>
@@ -86,18 +96,22 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "../assets/scss/variables.scss";
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
 .task--list {
     width: 100%;
     &_item {
         padding: 10px 10px;
         border-bottom: 1px solid grey;
-        display: flex;
         flex-direction: row;
         &:hover {
             background-color: $yellow;
         }
-        /* display: flex; */
-        /* flex-direction: row; */
     }
 }
 .task {

@@ -18,7 +18,6 @@ export default {};
     border-radius: 5px;
     color: $bg;
     font-weight: 700;
-
     margin-bottom: 10px;
     &:hover {
         background-color: $btn-darker;
