@@ -6,7 +6,8 @@
                     class="panel-searchbar"
                     type="text"
                     placeholder="Search"
-                    @click="toggleTaskStatus(task)"
+                    :value="searchQuery"
+                    @keyup="updateQuery"
                 />
             </div>
             <ul class="task--list">
@@ -90,6 +91,9 @@ export default {
         },
         getTasks() {
             this.$store.dispatch("task/fetchTasks");
+        },
+        updateQuery(e) {
+            this.$store.dispatch("central/updateSearchQuery", e.target.value);
         }
     }
 };
@@ -140,5 +144,15 @@ export default {
     overflow: hidden;
     height: 1.2em;
     white-space: nowrap;
+}
+.panel-searchbar {
+    margin-bottom: 20px;
+    border-radius: 5px;
+    height: 20px;
+    border: none;
+    &:focus {
+        border: none;
+        outline: none;
+    }
 }
 </style>

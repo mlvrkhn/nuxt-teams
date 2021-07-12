@@ -39,7 +39,7 @@ export default {
     methods: {
         handleSubmit() {
             this.$store
-                .dispatch("tasks/createTask", this.task)
+                .dispatch("task/createTask", this.task)
                 .then(() => {
                     TaskService.postTask(this.task);
                     this.task = this.createNewTask();
@@ -52,11 +52,10 @@ export default {
                 });
         },
         createNewTask() {
-            const id = Math.floor(
-                Math.random()
-                    .toString(16)
-                    .slice(2)
-            );
+            const id = Math.random()
+                .toString(36)
+                .substring(7);
+            console.log("id", id);
             const owner = this.getUser;
 
             return {
